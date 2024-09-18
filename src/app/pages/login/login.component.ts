@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
       client_id: '22632047741-hp6fqmual45k7t5cmlgdskpu55sng7pv.apps.googleusercontent.com',
       callback: (resp: any) =>{
         this.handleLogin(resp);
-        console.log(resp)
       }
 });
 
