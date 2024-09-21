@@ -7,7 +7,7 @@
       <ng-container >
         @for (movie of videoContents; track $index) {
           <div class="swiper-slide relative">
-            <img [src]="'https://image.tmdb.org/t/p/w500/'+movie.poster_path" alt="">
+            <img [src]="movie.poster_path | imageUrl" alt="">
             <div class="desc p-2">
               <span class="text-base flex flex-wrap font-bold">{{movie.original_title}}</span>
               <p class="text-xs my-3">{{movie.overview | description: 150}}</p>

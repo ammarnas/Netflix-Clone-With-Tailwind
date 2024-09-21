@@ -2,11 +2,12 @@ import { AfterViewInit, Component, ElementRef, Input, ViewChild, viewChild } fro
 import Swiper from 'swiper';
 import { IVideoContent } from '../../models/video-content.interface';
 import { DescriptionPipe } from '../../Pipes/description/description.pipe';
+import { ImageUrlPipe } from '../../Pipes/imageUrl/image-url.pipe';
 
 @Component({
   selector: 'app-movie-carousel',
   standalone: true,
-  imports: [DescriptionPipe],
+  imports: [DescriptionPipe, ImageUrlPipe],
   templateUrl: './movie-carousel.component.html',
   styleUrl: './movie-carousel.component.scss'
 })
