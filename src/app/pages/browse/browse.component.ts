@@ -4,6 +4,7 @@ import { HeaderComponent } from '../../core/components/header/header.component';
 import { BannerComponent } from '../../core/components/banner/banner.component';
 import { MovieService } from '../../shared/services/movie/movie.service';
 import { MovieCarouselComponent } from "../../shared/components/movie-carousel/movie-carousel.component";
+import { IVideoContent } from '../../shared/models/video-content.interface';
 
 @Component({
   selector: 'app-browse',
@@ -21,10 +22,13 @@ export class BrowseComponent implements OnInit {
   userProfileImg = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
   email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
 
+  popularMovies: IVideoContent[] = [];
+
   ngOnInit(): void {
     this.movieService.getMovies()
       .subscribe(res => {
         console.log(res);
+        this.popularMovies = res.results;
       })
   }
 
