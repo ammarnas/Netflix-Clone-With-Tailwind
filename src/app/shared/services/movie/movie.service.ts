@@ -22,9 +22,45 @@ const options = {
 export class MovieService {
 
   http = inject(HttpClient);
-  url = 'https://api.themoviedb.org/3/discover/movie';
+  url = 'https://api.themoviedb.org/3';
 
   getMovies() {
-    return this.http.get<any>(this.url, options);
+    return this.http.get<any>(`${this.url}/discover/movie`, options);
+  }
+
+  getTvShows() {
+    return this.http.get(`${this.url}/discover/tv`, options)
+  }
+
+  getRatedMovies() {
+    return this.http.get(`${this.url}/guest_session/guest_session_id/rated/movies`, options)
+  }
+
+  getBannerImage(id: number) {
+    return this.http.get(`${this.url}/movie/${id}/images`, options)
+  }
+
+  getBannerVideo(id: number) {
+    return this.http.get(`${this.url}/movie/${id}/videos`, options);
+  }
+
+  getBannerDetail(id: number) {
+    return this.http.get(`${this.url}/movie/${id}`, options);
+  }
+
+  getNowPlayingMovies() {
+    return this.http.get(`${this.url}/movie/now_playing`, options)
+  }
+
+  getPopularMovies() {
+    return this.http.get(`${this.url}/movie/popular`, options)
+  }
+
+  getTopRated() {
+    return this.http.get(`${this.url}/movie/top_rated`, options)
+  }
+
+  getUpcomingMovies() {
+    return this.http.get(`${this.url}/movie/upcoming`, options)
   }
 }
