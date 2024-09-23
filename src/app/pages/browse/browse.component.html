@@ -39,4 +39,9 @@
   </div> -->
 
   <app-banner/>
-  <app-movie-carousel [videoContents]="popularMovies" [title]="'Popular Movies'"/>
+  <app-movie-carousel [videoContents]="movies" [title]="'Popular on Netflix'"/>
+  <app-movie-carousel [videoContents]="tvShows" [title]="'TV Shows'"/>
+  <app-movie-carousel [videoContents]="nowPlaying" [title]="'Now Playing Movies'"/>
+  <!-- <app-movie-carousel [videoContents]="popularMovies" [title]="'Popular Movies'"/> -->
+  <app-movie-carousel [videoContents]="topRated" [title]="'Top Rated Movies'"/>
+  <app-movie-carousel [videoContents]="upComing" [title]="'Up Coming Movies'"/>

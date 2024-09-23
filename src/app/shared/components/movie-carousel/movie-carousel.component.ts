@@ -43,20 +43,20 @@ export class MovieCarouselComponent implements AfterViewInit {
           slidesPerView: 4,
           slidesPerGroup: 4,
           spaceBetween: 5,
-          centeredSlides: true,
+          centeredSlides: false,
         },
         1500: {
           slidesPerView: 5,
           slidesPerGroup: 5,
           spaceBetween: 5,
-          centeredSlides: true,
+          centeredSlides: false,
         },
         1800: {
           slidesPerView: 5,
           slidesPerGroup: 6,
           spaceBetween: 5,
-          centeredSlides: true,
-        },
+          centeredSlides: false,
+        }
       }
     })
   }
