@@ -38,7 +38,11 @@
 
   </div> -->
 
-  <app-banner [bannerTitle]="(bannerDetails$ | async)?.original_title" [bannerContent]="(bannerDetails$ | async)?.overview"/>
+  <app-banner
+  [bannerTitle]="(bannerDetails$ | async)?.original_title"
+  [bannerContent]="(bannerDetails$ | async)?.overview"
+  [videoKey]="(bannerVideo$ | async)?.result[0].key"
+  />
   <app-movie-carousel [videoContents]="movies" [title]="'Popular on Netflix'"/>
   <app-movie-carousel [videoContents]="tvShows" [title]="'TV Shows'"/>
   <app-movie-carousel [videoContents]="nowPlaying" [title]="'Now Playing Movies'"/>

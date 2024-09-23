@@ -25,6 +25,7 @@ export class BrowseComponent implements OnInit {
   email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
 
   bannerDetails$ = new Observable<any>();
+  bannerVideo$ = new Observable<any>();
 
   movies: IVideoContent[] = [];
   tvShows: IVideoContent[] = [];
@@ -50,10 +51,11 @@ export class BrowseComponent implements OnInit {
     .pipe(
       map(([movies, /*tvShows,*/ /*rateMovies,*/ nowPlaying, upComing, popular, topRated]) => {
         this.bannerDetails$ = this.movieService.getBannerDetail(movies.results[0].id);
+        this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);
         return {movies, /*tvShows,*/ /*rateMovies,*/ nowPlaying, upComing, popular, topRated}
     })
     ).subscribe((res:any) => {
-      console.log(res)
+      console.log(res.popular)
       // this.movies = res.movies.results as IVideoContent[];
       // this.tvShows = res.tvShows.results as IVideoContent[];
       // this.rateMovies = res.rateMovies.results as IVideoContent[];
