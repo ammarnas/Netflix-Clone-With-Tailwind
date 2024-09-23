@@ -5,12 +5,13 @@ import { BannerComponent } from '../../core/components/banner/banner.component';
 import { MovieService } from '../../shared/services/movie/movie.service';
 import { MovieCarouselComponent } from "../../shared/components/movie-carousel/movie-carousel.component";
 import { IVideoContent } from '../../shared/models/video-content.interface';
-import { forkJoin, map } from 'rxjs';
+import { forkJoin, map, Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [HeaderComponent, BannerComponent, MovieCarouselComponent],
+  imports: [HeaderComponent, BannerComponent, MovieCarouselComponent, CommonModule],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.scss'
 })
@@ -23,6 +24,8 @@ export class BrowseComponent implements OnInit {
   userProfileImg = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
   email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
 
+  bannerDetails$ = new Observable<any>();
+
   movies: IVideoContent[] = [];
   tvShows: IVideoContent[] = [];
   popularMovies: IVideoContent[] = [];
@@ -33,7 +36,7 @@ export class BrowseComponent implements OnInit {
   topRated: IVideoContent[] = [];
 
   source = [
-    // this.movieService.getMovies(),
+    this.movieService.getMovies(),
     // this.movieService.getTvShows(),
     // this.movieService.getRatedMovies(),
     this.movieService.getNowPlayingMovies(),
@@ -45,8 +48,9 @@ export class BrowseComponent implements OnInit {
   ngOnInit(): void {
     forkJoin(this.source)
     .pipe(
-      map(([/*movies,*/ /*tvShows,*/ /*rateMovies,*/ nowPlaying, upComing, popular, topRated]) => {
-        return {/*movies,*/ /*tvShows,*/ /*rateMovies,*/ nowPlaying, upComing, popular, topRated}
+      map(([movies, /*tvShows,*/ /*rateMovies,*/ nowPlaying, upComing, popular, topRated]) => {
+        this.bannerDetails$ = this.movieService.getBannerDetail(movies.results[0].id);
+        return {movies, /*tvShows,*/ /*rateMovies,*/ nowPlaying, upComing, popular, topRated}
     })
     ).subscribe((res:any) => {
       console.log(res)
